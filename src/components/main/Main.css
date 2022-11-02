@@ -1,0 +1,6 @@
+.link-style a {
+  text-decoration: none !important;
+  display: flex;
+  justify-content: center;
+  font-size: 2rem;
+}

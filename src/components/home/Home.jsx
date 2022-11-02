@@ -109,7 +109,9 @@ const Home = () => {
       </div>
       <div
         className={
-          passwordError && "" ? "door-middle" : "door-middle rotate-style"
+          passwordError && ""
+            ? "door-middle"
+            : "door-middle rotate-style display-none"
         }
       >
         <div className="door-middle-h2">
