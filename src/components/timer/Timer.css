@@ -1,0 +1,17 @@
+.timer {
+  color: aliceblue;
+}
+
+.container {
+  background-color: rgb(52, 51, 51);
+  width: 12rem;
+  color: aquamarine;
+}
+
+.timer-container {
+  display: flex;
+
+  flex-direction: column;
+  margin-top: 16rem;
+  margin-left: 2rem;
+}

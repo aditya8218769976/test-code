@@ -1,0 +1,95 @@
+.door-left {
+  background-color: rgb(17, 19, 18);
+  height: 100vh;
+  width: 50%;
+  position: fixed;
+  left: 0;
+  animation: door-left 3s infinite;
+  border: 5px solid rgb(1, 23, 21);
+  color: azure;
+}
+
+@keyframes door-left {
+  from {
+    left: 0;
+  }
+  to {
+    left: -30%;
+  }
+}
+
+.door-left-wrapper {
+  margin-top: 12rem;
+  padding-left: 6rem;
+}
+
+.door-left-option {
+  display: flex;
+}
+
+.door-left-work1 {
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+.door-right {
+  background-color: rgb(17, 19, 18);
+  height: 100vh;
+  width: 50%;
+  position: fixed;
+  right: 0;
+  animation: door-right 3s infinite;
+}
+
+@keyframes door-right {
+  from {
+    right: 0;
+  }
+  to {
+    right: -30%;
+  }
+}
+
+.door-middle {
+  display: flex;
+  left: 40%;
+  width: 21rem;
+  border-radius: 50%;
+  background: aqua;
+  height: 21rem;
+  position: absolute;
+  top: 25%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition-duration: 5s;
+  border: 2px solid red;
+}
+.rotate-style {
+  transform: rotate(360deg) !important;
+}
+
+.door-middle-form {
+  display: grid;
+  margin-bottom: 1rem;
+}
+
+.error-msg {
+  font-size: 12px;
+  width: 100%;
+  color: red;
+}
+
+.success-msg {
+  width: 100%;
+  background-color: #0f824d;
+  color: whitesmoke;
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+}
