@@ -4,12 +4,16 @@
   width: 50%;
   position: fixed;
   left: 0;
-  animation: door-left 3s infinite;
-  border: 5px solid rgb(1, 23, 21);
+
+  border: 5px solid rgb(185, 244, 239);
   color: azure;
 }
 
-@keyframes door-left {
+.door-left-animation {
+  animation: door-left-animation 3s infinite;
+}
+
+@keyframes door-left-animation {
   from {
     left: 0;
   }
@@ -38,10 +42,14 @@
   width: 50%;
   position: fixed;
   right: 0;
-  animation: door-right 3s infinite;
+  border: 5px solid rgb(185, 244, 239);
 }
 
-@keyframes door-right {
+.door-right-animation {
+  animation: door-right-animation 3s;
+}
+
+@keyframes door-right-animation {
   from {
     right: 0;
   }
@@ -50,9 +58,24 @@
   }
 }
 
+@keyframes rotate-style {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.door-middle-container {
+  max-width: 20rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .door-middle {
   display: flex;
-  left: 40%;
+  left: 38.5%;
   width: 21rem;
   border-radius: 50%;
   background: aqua;
@@ -62,11 +85,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  transition-duration: 5s;
+
   border: 2px solid red;
+
+  z-index: 10;
 }
 .rotate-style {
-  transform: rotate(360deg) !important;
+  animation: rotate-style 3s;
+  transition-duration: 5s;
 }
 
 .door-middle-form {

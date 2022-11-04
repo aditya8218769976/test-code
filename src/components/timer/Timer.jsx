@@ -2,10 +2,13 @@ import React from "react";
 import "../timer/Timer.css";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Timer = () => {
   const [seconds, setSeconds] = useState(0);
-  const [minutes, setMinutes] = useState(10);
+  const [minutes, setMinutes] = useState(2);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     var timer;
@@ -18,6 +21,9 @@ const Timer = () => {
       }
     }, 1000);
 
+    if (minutes === 0) {
+      navigate("/");
+    }
     return () => clearInterval(timer);
   });
 

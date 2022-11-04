@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import "../home/Home.css";
 import Timer from "../timer/Timer";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-  //   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const [password, setPassword] = useState("");
-  const [passwordError, setPasswordError] = useState(false);
+  const [passwordError, setPasswordError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const navigate = useNavigate();
 
   const passwordHandler = (e) => {
     setSuccessMessage("");
@@ -16,11 +18,9 @@ const Home = () => {
     setPassword(e.target.value);
   };
 
-  const submitHandler = (e) => {
+  const rotateHandler = (e) => {
     e.preventDefault();
-
     //   checking if password is empty
-
     if (password !== "") {
       setSuccessMessage("");
     } else {
@@ -30,17 +30,21 @@ const Home = () => {
 
     if (password === "adityamishra") {
       setSuccessMessage("Welcome");
+      setIsLoggedIn(true);
+      setTimeout(() => {
+        navigate("/main");
+      }, 3000);
     } else {
       setPasswordError("Please fill correct password");
+      setIsLoggedIn(false);
     }
   };
 
-  const rotateHandler = () => {
-    setPasswordError(true);
-  };
   return (
     <div>
-      <div className="door-left">
+      <div
+        className={isLoggedIn ? "door-left door-left-animation" : "door-left"}
+      >
         <div className="door-left-wrapper">
           <div className="door-left-h2">
             <h2>Java</h2>
@@ -107,46 +111,50 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div
-        className={
-          passwordError && ""
-            ? "door-middle"
-            : "door-middle rotate-style display-none"
-        }
-      >
-        <div className="door-middle-h2">
-          <h2 className="text-center">fingerprint Icon</h2>
-        </div>
+      <div className="door-middle-container">
+        <div
+          // className="door-middle"
+          className={isLoggedIn ? "rotate-style door-middle" : "door-middle"}
+        >
+          <div className="door-middle-h2">
+            <h2 className="text-center">fingerprint Icon</h2>
+          </div>
 
-        <form onSubmit={submitHandler} className="door-middle-form">
-          {successMessage && (
-            <div className="success-msg">{successMessage}</div>
-          )}
-          <label className="text-center" htmlFor="password">
-            ENTER YOUR PILEARNING PASSWORD
-          </label>
-          <input
-            onChange={passwordHandler}
-            value={password}
-            className="password-input"
-            type="password"
-            required
-          />
-          {passwordError && <div className="error-msg">{passwordError}</div>}
-          <div className="actions">
-            {!passwordError && (
-              <Link
-                to="main"
-                onClick={rotateHandler}
-                className="btn btn-primary"
-              >
-                Enter Lab
-              </Link>
+          <div className="door-middle-form">
+            {successMessage && (
+              <div className="success-msg">{successMessage}</div>
+            )}
+            <label className="text-center" htmlFor="password">
+              ENTER YOUR PILEARNING PASSWORD
+            </label>
+
+            <input
+              onChange={passwordHandler}
+              value={password}
+              className="password-input"
+              type="password"
+              required
+            />
+            {passwordError && <div className="error-msg">{passwordError}</div>}
+            {password && (
+              <div className="actions">
+                <Link
+                  to="main"
+                  onClick={rotateHandler}
+                  className="btn btn-primary"
+                >
+                  Enter Lab
+                </Link>
+              </div>
             )}
           </div>
-        </form>
+        </div>
       </div>
-      <div className="door-right">
+      <div
+        className={
+          isLoggedIn ? "door-right door-right-animation" : "door-right"
+        }
+      >
         <Timer />
       </div>
     </div>
