@@ -3,6 +3,7 @@ import "../home/Home.css";
 import Timer from "../timer/Timer";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Login from "./Ḷogin";
 
 const Home = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -18,17 +19,21 @@ const Home = () => {
     setPassword(e.target.value);
   };
 
+  //   const userLoggedIn = () => {
+  //     navigate("/main");
+  //   };
+
   const rotateHandler = (e) => {
     e.preventDefault();
     //   checking if password is empty
-    if (password !== "") {
+    if (password === "") {
       setSuccessMessage("");
     } else {
       setPasswordError("Password is required");
     }
     // checking if password is valid//
 
-    if (password === "adityamishra") {
+    if (password === "adi") {
       setSuccessMessage("Welcome");
       setIsLoggedIn(true);
       setTimeout(() => {
@@ -36,10 +41,11 @@ const Home = () => {
       }, 3000);
     } else {
       setPasswordError("Please fill correct password");
-      setIsLoggedIn(false);
+      //   setIsLoggedIn(false);
     }
   };
-
+  const loggedIn = window.localStorage.getItem("logout");
+  console.log(loggedIn, "loggedIn...");
   return (
     <div>
       <div
@@ -136,8 +142,11 @@ const Home = () => {
               required
             />
             {passwordError && <div className="error-msg">{passwordError}</div>}
-            {password && (
-              <div className="actions">
+
+            <div className="actions">
+              {isLoggedIn && loggedIn ? (
+                <Login />
+              ) : (
                 <Link
                   to="main"
                   onClick={rotateHandler}
@@ -145,8 +154,8 @@ const Home = () => {
                 >
                   Enter Lab
                 </Link>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
       </div>

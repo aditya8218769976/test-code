@@ -4,6 +4,9 @@ import Home from "../components/home/Home";
 import Main from "../components/main/Main";
 
 const Routes = () => {
+  //   const loggedIn = window.localStorage.getItem("isLoggedIn");
+
+  //   console.log(loggedIn, "loggedIn...............");
   return (
     <>
       <Router>
